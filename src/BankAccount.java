@@ -15,7 +15,8 @@ public class BankAccount {
     }
 
     // Deposit Method
-    void Deposit(double amount) {
+    void Deposit() {
+        double amount;
         Scanner myObj = new Scanner(System.in); // Create a new scanner for input
         System.out.println("What amount would you like to deposit? (Cannot exceed $10,000.): ");
 
@@ -27,12 +28,14 @@ public class BankAccount {
         } else {
             balance += amount;
             previousTransactions = amount;
+            System.out.println("Deposit Successful!");
         }
     }
 
     // Withdraw Method
 
-    void Withdraw(double amount) {
+    void Withdraw() {
+        double amount;
         Scanner myObj = new Scanner(System.in);
         System.out.println("What amount would you like to withdraw? (Cannot exceed $10,000.): ");
         amount = Double.parseDouble(myObj.nextLine());
@@ -48,6 +51,7 @@ public class BankAccount {
         } else {
             balance -= amount;
             previousTransactions = -amount;
+            System.out.println("Withdraw Successful!");
         }
     }
 
@@ -55,7 +59,7 @@ public class BankAccount {
         if (previousTransactions > 0) {
             System.out.println("Previous Transaction was: +" + previousTransactions);
         } else if (previousTransactions < 0) {
-            System.out.println("Previous Transaction was: -" + previousTransactions);
+            System.out.println("Previous Transaction was: " + previousTransactions);
         } else {
             System.out.println("No previous transaction was made.");
         }
@@ -72,7 +76,7 @@ public class BankAccount {
         String option;
         do {
             System.out.println("----------------Bank Account App------------\n");
-            System.out.println("Welcome" + customerName + "What would you like to do?\n");
+            System.out.println("Welcome " + customerName + ". What would you like to do?\n");
             System.out.println("1. Deposit\n");
             System.out.println("2. Withdraw\n");
             System.out.println("3. View Previous Transaction\n");
@@ -86,17 +90,11 @@ public class BankAccount {
 
             switch (option) {
                 case "1":
-                    double depositAmount;
-                    System.out.println("Enter an amount to deposit: ");
-                    depositAmount = Double.parseDouble(myObj.nextLine());
-                    Deposit(depositAmount);
+                    Deposit();
                     System.out.println("\n");
                     break;
                 case "2":
-                    double withdrawAmount;
-                    System.out.println("Enter an amount to withdraw: ");
-                    withdrawAmount = Double.parseDouble(myObj.nextLine());
-                    Withdraw(withdrawAmount);
+                    Withdraw();
                     System.out.println("\n");
                     break;
                 case "3":
