@@ -51,5 +51,71 @@ public class BankAccount {
         }
     }
 
+    void GetPreviousTransactions() {
+        if (previousTransactions > 0) {
+            System.out.println("Previous Transaction was: +" + previousTransactions);
+        } else if (previousTransactions < 0) {
+            System.out.println("Previous Transaction was: -" + previousTransactions);
+        } else {
+            System.out.println("No previous transaction was made.");
+        }
+    }
 
+    void DisplayAccount() {
+        System.out.println("Customer name: " + customerName + "\n");
+        System.out.println("Customer ID: " + customerId + "\n");
+        System.out.println("Balance: " + balance + "\n");
+        System.out.println("Previous transaction: " + previousTransactions + "\n");
+    }
+
+    void PrintMenu() {
+        String option;
+        do {
+            System.out.println("----------------Bank Account App------------\n");
+            System.out.println("Welcome" + customerName + "What would you like to do?\n");
+            System.out.println("1. Deposit\n");
+            System.out.println("2. Withdraw\n");
+            System.out.println("3. View Previous Transaction\n");
+            System.out.println("4. Display Account\n");
+            System.out.println("5. Exit Application");
+            System.out.println("---------------------------------------------\n");
+
+
+            Scanner myObj = new Scanner(System.in);
+            option = myObj.nextLine();
+
+            switch (option) {
+                case "1":
+                    double depositAmount;
+                    System.out.println("Enter an amount to deposit: ");
+                    depositAmount = Double.parseDouble(myObj.nextLine());
+                    Deposit(depositAmount);
+                    System.out.println("\n");
+                    break;
+                case "2":
+                    double withdrawAmount;
+                    System.out.println("Enter an amount to withdraw: ");
+                    withdrawAmount = Double.parseDouble(myObj.nextLine());
+                    Withdraw(withdrawAmount);
+                    System.out.println("\n");
+                    break;
+                case "3":
+                    System.out.println("Previous Transactions");
+                    GetPreviousTransactions();
+                    break;
+                case "4":
+                    System.out.println("Account Information: \n");
+                    DisplayAccount();
+                    break;
+                case "5":
+                    System.out.println("Exiting.....");
+                    break;
+                default:
+                    System.out.println("Please enter a valid option.");
+            }
+        } while (!option.equals("5"));
+
+        System.out.println("Thank you for using The bank application.");
+    }
 }
+
